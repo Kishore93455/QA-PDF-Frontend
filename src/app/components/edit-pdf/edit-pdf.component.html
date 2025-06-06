@@ -1,0 +1,39 @@
+<div class="editor-container">
+  <h1>📄 PDF Editor (Template Support)</h1>
+  
+  <div class="upload-section" *ngIf="!sections.length">
+    <form #uploadForm="ngForm">
+      <div class="form-group">
+        <label>Upload Content PDF:</label>
+        <input type="file" (change)="onContentPdfSelected($event)" accept=".pdf" required />
+        <div *ngIf="contentPdf" class="file-info">Selected: {{ contentPdf.name }}</div>
+      </div>
+      
+      <div class="form-group">
+        <label>Upload Template PDF (optional):</label>
+        <input type="file" (change)="onTemplatePdfSelected($event)" accept=".pdf" />
+        <div *ngIf="templatePdf" class="file-info">Selected: {{ templatePdf.name }}</div>
+      </div>
+      
+      <button type="button" [disabled]="!contentPdf || isLoading" (click)="uploadPdfs()" class="btn-upload">
+        <span *ngIf="!isLoading">Upload</span>
+        <span *ngIf="isLoading">Processing...</span>
+      </button>
+    </form>
+  </div>
+  
+  <div class="editor-section" *ngIf="sections.length">
+    <div class="section" *ngFor="let section of sections; let i = index">
+      <h3>{{ section.heading }}</h3>
+      <textarea [(ngModel)]="section.content" rows="6"></textarea>
+    </div>
+    
+    <div class="actions">
+      <button (click)="saveAndDownload()" [disabled]="isLoading" class="btn-save">
+        <span *ngIf="!isLoading">View</span>
+        <span *ngIf="isLoading">Processing...</span>
+      </button>
+      <button (click)="resetEditor()" class="btn-reset">Start Over</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container">
+  <h2 class="user-h">User Management</h2>
+  
+  <div *ngIf="loading" class="loading">
+    Loading users...
+  </div>
+
+  <table *ngIf="!loading && users.length > 0" class="user-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.role}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && users.length === 0" class="no-users">
+    No users found.
+  </div>
+</div>

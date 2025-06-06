@@ -1,0 +1,74 @@
+<div class="qa-container">
+  <h2>PDF Question & Answer</h2>
+  <div class="button-group">
+    <button class="btn btn-chat" routerLink="/chat">Chat with AI</button>
+    <button *ngIf="but" class="btn btn-pdf" (click)="getpdf();">{{ showPdfList ? 'Back' : 'Get PDF' }}</button>
+  </div>
+  <div class="upload-section" *ngIf="showUploadContainer">
+    <h3>Upload PDF</h3>
+    <div class="file-input">
+      <input type="file" class="file-upload" (change)="onFileSelected($event)" accept=".pdf" [disabled]="isUploading">
+      <button class="btn btn-primary" (click)="uploadPdf()" [disabled]="!selectedFile || isUploading">
+        {{ isUploading ? 'Uploading...' : 'Upload PDF' }}
+      </button>
+    </div>
+    <div *ngIf="uploadedPdfId" class="success-message">
+      <i class="fas fa-check-circle"></i> PDF uploaded successfully!
+    </div>
+  </div>
+    
+  <div class="pdf-list-section" *ngIf="showPdfList">
+    <h3>Your PDFs</h3>
+    <div *ngIf="isProcessing" class="loading">
+      <div class="spinner"></div>
+      <span>Loading PDFs...</span>
+    </div>
+    <div *ngIf="!isProcessing && pdfList.length === 0" class="no-pdfs">
+      <div class="empty-state">
+        <i class="far fa-file-pdf"></i>
+        <p>No PDFs found. Please upload a PDF.</p>
+      </div>
+    </div>
+    <ul *ngIf="pdfList.length > 0" class="pdf-list">
+      <li *ngFor="let pdf of pdfList" class="pdf-item">
+        <div class="pdf-info">
+          <span class="pdf-title">{{ pdf.title }}</span>
+        </div>
+        <div class="pdf-actions">
+          <button class="btn btn-select" (click)="selectPdf(pdf._id, pdf.title)">Select</button>
+          <button class="btn btn-view" (click)="viewpdf(pdf._id)">View</button>
+          <button class="btn btn-delete" (click)="deletePdf(pdf._id)">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="qa-section" *ngIf="showQaSection">
+    <h3>Ask a Question</h3>
+    <div class="question-input">
+      <label>Ask Question related to <span class="pdf-name">{{tit}}</span></label>
+      <textarea 
+        [(ngModel)]="question" 
+        placeholder="Type your question here..." 
+        [disabled]="!uploadedPdfId || isProcessing"
+      ></textarea>
+      <button 
+        class="btn btn-ask" 
+        (click)="askQuestion()" 
+        [disabled]="!uploadedPdfId || !question || isProcessing"
+      >
+        <span *ngIf="!isProcessing">Ask Question</span>
+        <div *ngIf="isProcessing" class="spinner-small"></div>
+      </button>
+    </div>
+    
+    <div *ngIf="answer" class="answer-section">
+      <h3>Answer:</h3>
+      <div class="answer-content">
+        {{ answer }}
+      </div>
+    </div>
+    <button class="btn btn-back" (click)="goBack()">Back</button>
+    <button class="btn btn-chat" (click)="questionai()">Go with AI</button>
+  </div>
+</div>

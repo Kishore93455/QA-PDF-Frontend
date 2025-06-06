@@ -1,0 +1,19 @@
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <a routerLink="/">PDF Q&A App</a>
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li *ngIf="authService.isAdmin()"><a routerLink="/admin/users"  routerLinkActive="active">Users</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a routerLink="/qa" routerLinkActive="active">Q&A</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a routerLink="/create_pdf" routerLinkActive="active">Create a PDF</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a routerLink="/edit_pdf" routerLinkActive="active">Edit a PDF</a></li>
+        <li *ngIf="!authService.isAuthenticated()"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+        <li *ngIf="!authService.isAuthenticated()"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a href="javascript:void(0)" (click)="logout()">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

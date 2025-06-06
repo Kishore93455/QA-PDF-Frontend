@@ -1,0 +1,107 @@
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.not-found-content {
+  text-align: center;
+  animation: fadeIn 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  max-width: 600px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.not-found-number {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+
+
+
+.not-found-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-weight: 6000;
+}
+
+.not-found-text {
+  font-size: 18px;
+  color: #7f8c8d;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.not-found-button {
+  padding: 15px 40px;
+  font-size: 18px;
+  background: linear-gradient(to right, #4b6cb7, #182848);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(75, 108, 183, 0.3);
+}
+
+.not-found-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(75, 108, 183, 0.4);
+}
+
+.not-found-button:active {
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@media (max-width: 768px) {
+  .digit {
+    font-size: 80px;
+    color: #ff6b6b; /* Bright coral color */
+    animation: pulse 2s infinite alternate;
+    text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+    
+  }
+  
+  .not-found-title {
+    font-size: 28px;
+  }
+  
+  .not-found-content {
+    padding: 30px 20px;
+    margin: 0 20px;
+  }
+}
+
+@keyframes pulse {
+  from {
+    color: #ff9e9e; /* Lighter, dimmer version */
+    text-shadow: 0 0 5px rgba(255, 158, 158, 0.3);
+  }
+  to {
+    color: #ff6b6b; /* Brighter version */
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+  }
+}

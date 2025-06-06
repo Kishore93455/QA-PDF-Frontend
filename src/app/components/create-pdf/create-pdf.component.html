@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="pdf-container">
+    <div class="upload-section">
+      <h3>Upload PDF</h3>
+      <input type="file" (change)="onFileSelected($event)" accept=".pdf" class="file-input">
+      <div class="upload-preview" *ngIf="selectedFile">
+        <p>Selected file: {{ selectedFile.name }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Container for Text Input -->
+  <div class="pdf-container">
+    <div class="text-input-section">
+      <h3>Input Area</h3>
+      <textarea [(ngModel)]="markdownText" placeholder="Enter text here..." class="text-area"></textarea>
+      <button (click)="generatePdf()" class="btn-generate">Generate PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- PDF List Section -->
+<div class="pdf-list-container">
+  <h3>Generated PDFs</h3>
+  <div class="pdf-list">
+    <div class="pdf-item" *ngFor="let pdf of pdfList">
+      <span class="pdf-name">{{ pdf.name }}</span>
+      <div class="pdf-actions">
+        <button (click)="view()" class="btn-action">View</button>
+      </div>
+    </div>
+  </div>
+</div>
