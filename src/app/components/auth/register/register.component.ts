@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ErrorService } from '../../../services/error.service';
+import { GoogleAuthComponent } from '../google-auth/google-auth.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, GoogleAuthComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

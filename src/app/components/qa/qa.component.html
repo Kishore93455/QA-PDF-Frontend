@@ -61,13 +61,13 @@
         <div *ngIf="isProcessing" class="spinner-small"></div>
       </button>
     </div>
+  </div>
     
-    <div *ngIf="answer" class="answer-section">
+  <div *ngIf="answer" class="answer-section">
       <h3>Answer:</h3>
       <div class="answer-content">
         {{ answer }}
       </div>
-    </div>
     <button class="btn btn-back" (click)="goBack()">Back</button>
     <button class="btn btn-chat" (click)="questionai()">Go with AI</button>
   </div>

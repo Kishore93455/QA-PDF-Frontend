@@ -18,6 +18,7 @@ export class CreatePdfComponent implements OnInit {
   isLoading: boolean = false;
   fileName: string = '';
   c_text: string = '';
+  ispdflist: boolean = false;
 
   constructor(private pdfService: PdfService , private errorService : ErrorService) {}
 
@@ -58,6 +59,7 @@ export class CreatePdfComponent implements OnInit {
           id: Date.now(),
           content: response 
         });
+        this.ispdflist = true;
         this.markdownText = '';
         this.selectedFile = null;
         this.fileName = '';

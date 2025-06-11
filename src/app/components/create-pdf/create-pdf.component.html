@@ -20,7 +20,7 @@
 </div>
 
 <!-- PDF List Section -->
-<div class="pdf-list-container">
+<div *ngIf="ispdflist" class="pdf-list-container">
   <h3>Generated PDFs</h3>
   <div class="pdf-list">
     <div class="pdf-item" *ngFor="let pdf of pdfList">

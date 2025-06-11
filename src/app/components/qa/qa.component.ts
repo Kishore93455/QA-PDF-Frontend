@@ -153,6 +153,7 @@ export class QaComponent implements OnInit {
     
     this.qaService.askQuestion(this.uploadedPdfId, this.question).subscribe({
       next: (response) => {
+        this.showQaSection = false;
         this.answer = response.answer;
         this.isProcessing = false;
       },
@@ -173,7 +174,15 @@ export class QaComponent implements OnInit {
   }
 
   goBack(): void {
-    this.uploadedPdfId = null;
+    if (!this.pdfshow) {
+    this.answer = '';
+    this.isProcessing = false;
+    this.isUploading = false;
+    this.selectedFile = null;
+    this.showUploadContainer = false;
+    this.showPdfList = false;
+    this.showQaSection = true;}
+    else {
     this.question = '';
     this.answer = '';
     this.isProcessing = false;
@@ -182,6 +191,7 @@ export class QaComponent implements OnInit {
     this.showUploadContainer = true;
     this.showPdfList = false;
     this.showQaSection = false;
+    }
   }
 
   deletePdf(pdfId: string): void {

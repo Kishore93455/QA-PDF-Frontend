@@ -4,7 +4,6 @@
   align-items: center;
   min-height: calc(100vh - 64px);
   padding: 20px;
-  background-color: #f5f5f5;
 }
 
 .auth-card {
@@ -14,6 +13,7 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+  border: 1px solid rgb(0, 0, 0);
 }
 
 .auth-card h2 {

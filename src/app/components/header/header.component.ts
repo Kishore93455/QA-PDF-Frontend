@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service'
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmPopComponent } from '../confirm-pop/confirm-pop.component';
 
 
 @Component({
@@ -12,9 +14,20 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService,
+  private matdialog : MatDialog
+  ) {}
 
   logout(): void {
-    this.authService.logout();
-  }
+
+    const dialogref = this.matdialog.open( ConfirmPopComponent, {
+      data: 'Are you sure you want to proceed with this action? This change cannot be undone. Please confirm to continue or cancel to go back.'})
+
+    dialogref.afterClosed().subscribe( result => {
+      if (result) {
+        this.authService.logout();
+      }
+      })
+    }
 }
+

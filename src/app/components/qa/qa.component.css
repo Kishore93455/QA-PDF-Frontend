@@ -1,6 +1,7 @@
 /* Main Container Styling */
 .qa-container {
-  max-width: 900px;
+  width: 1000px;
+  max-height: 900px;
   margin: 2rem auto;
   padding: 2.5rem;
   background: #ffffff;
@@ -153,6 +154,10 @@ h3 {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
+.qa-section{
+  max-height: 400px;
+}
+
 /* File Input Styling */
 .file-input {
   display: flex;
@@ -272,10 +277,12 @@ textarea:disabled {
 }
 
 .answer-content {
+  max-height: 600px;
   color: #2c3e50;
   line-height: 1.7;
   font-size: 1.05rem;
   white-space: pre-line;
+  overflow: auto;
 }
 
 /* Message Styling */
