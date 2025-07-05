@@ -1,0 +1,44 @@
+<div class="table-wrapper">
+  <div class="table-scroll">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th *ngFor="let col of columns">{{ col }}</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let row of data">
+          <td>
+            <div class="template-name">
+              <div class="title">{{ row.name }}</div>
+              <div class="sub">{{ row.category }}</div>
+            </div>
+          </td>
+          <td>{{ row.type }}</td>
+          <td><span class="flag">🇦🇺</span> {{ row.language }}</td>
+          <td>
+            <span [ngClass]="{
+              'badge-approved': row.status === 'APPROVED',
+              'badge-rejected': row.status === 'REJECTED',
+              'badge-pending': row.status === 'PENDING'
+            }">{{ row.status }}</span>
+          </td>
+          <td class="action-icons">
+            <button mat-icon-button><mat-icon>visibility</mat-icon></button>
+            <button mat-icon-button><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-footer">
+    <app-pagenation
+      [pageType]="pageType"
+      [loadingButton]="loadingButton"
+      (limit)="onLimitChange($event)"
+      (btnName)="onBtnClick($event)">
+    </app-pagenation>
+  </div>
+</div>

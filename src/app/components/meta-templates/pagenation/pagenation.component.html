@@ -1,0 +1,57 @@
+<div class="pagination-footer">
+
+  <button class="btn-q" (click)="goToFirst()" [disabled]="disableFirst">
+    <ng-container *ngIf="loadingButton === 'FIRST'; else firstContent">
+      <span class="loader"></span>
+    </ng-container>
+    <ng-template #firstContent>
+      <span class="icon">&#60;</span>
+      <span class="icon">&#60;</span>
+      <span class="icon-name">FIRST</span>
+    </ng-template>
+  </button>
+
+  <button class="btn-c" (click)="goToPreviousPage()" [disabled]="disablePrev">
+    <ng-container *ngIf="loadingButton === 'PREVIOUS'; else prevContent">
+      <span class="loader"></span>
+    </ng-container>
+    <ng-template #prevContent>
+      <span class="icon">&#60;</span>
+      <span class="icon-name">Previous</span>
+    </ng-template>
+  </button>
+
+  <div class="limit-dropdown">
+    <label for="limitSelect">Items per page:</label>
+    <select
+      id="limitSelect"
+      [ngModel]="currentLimit"
+      (ngModelChange)="onLimitChange($event)">
+      <option *ngFor="let l of [5, 10, 25, 100]" [value]="l">
+        {{ l }}
+      </option>
+    </select>
+  </div>
+
+  <button class="btn-c" (click)="goToNextPage()" [disabled]="disableNext">
+    <ng-container *ngIf="loadingButton === 'NEXT'; else nextContent">
+      <span class="loader"></span>
+    </ng-container>
+    <ng-template #nextContent>
+      <span class="icon-name">Next</span>
+      <span class="icon">&#62;</span>
+    </ng-template>
+  </button>
+
+  <button class="btn-q" (click)="goToLast()" [disabled]="disableLast">
+    <ng-container *ngIf="loadingButton === 'LAST'; else lastContent">
+      <span class="loader"></span>
+    </ng-container>
+    <ng-template #lastContent>
+      <span class="icon-name">LAST</span>
+      <span class="icon">&#62;</span>
+      <span class="icon">&#62;</span>
+    </ng-template>
+  </button>
+
+</div>
