@@ -1,0 +1,24 @@
+
+
+<div class="custom-step-header">
+  <ng-container *ngFor="let step of stepHeads; let i = index">
+    <div
+      class="step-header-item"
+      [ngClass]="{
+        'completed': i < currentStep,
+        'active': i === currentStep
+      }"
+      (click)="onStepClick(i)"
+    >
+      <div class="number">{{ i + 1 }}</div>
+      <div class="head-name">{{ step.label }}</div>
+    </div>
+    <div
+      *ngIf="i < stepHeads.length - 1"
+      class="step-connector-line"
+      [ngClass]="{
+        'completed-line': i < currentStep
+      }"
+    ></div>
+  </ng-container>
+</div>

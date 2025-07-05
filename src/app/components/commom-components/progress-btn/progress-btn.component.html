@@ -1,0 +1,15 @@
+<button class="progress-btn"
+    [disabled]="form?.invalid || isProcessing"
+    (click)="handleClick()">
+    
+    <span>{{ isProcessing ? 'Processing...' : btnText }}</span>
+  
+    <mat-progress-spinner 
+        *ngIf="isProcessing" 
+        diameter="20" 
+        mode="indeterminate"
+        [strokeWidth]="3"
+        color="primary"
+        style="vertical-align: middle; margin-right: 8px;">
+    </mat-progress-spinner>
+</button>
