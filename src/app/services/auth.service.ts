@@ -30,7 +30,7 @@ export class AuthService {
     this.loadUserFromStorage();
   }
 
-  // Load user from localStorage on app start
+
   private loadUserFromStorage(): void {
     const user = localStorage.getItem('user');
     if (user) {
@@ -51,7 +51,7 @@ export class AuthService {
 
 
   googleLogin(tokenId: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/google-login`, { tokenId })
+    return this.http.post<AuthResponse>(`${this.apiUrl}/google-login`, { tokenId})
       .pipe(tap(res => this.handleAuthentication(res)));
   }
 

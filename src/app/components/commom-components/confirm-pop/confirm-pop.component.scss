@@ -6,9 +6,20 @@
     justify-content: center;
     align-items: center;
 
+    .warn{
+      font-size: 32px;
+    }
+
+    .mat-icon{
+      height: 30px !important;
+      width: 30px !important;
+      color: orange;
+    }
+
   .data {
     text-align: center;
     font-size: 16px;
+    font-weight: 600;
     margin-bottom: 10px;
   }
 
@@ -40,4 +51,10 @@
       border-radius: 4px;
     }
   }
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: 0 !important;
+  border: 2px solid rgba(0, 0, 0, 0.466);
+  background-color: rgba(255, 255, 255, 0.795);
 }

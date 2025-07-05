@@ -27,7 +27,26 @@ export class GoogleAuthComponent {
     handleCredentialResponse(response: any): void {
       this.token = response.credential;
       this.googleAuth();
+      // this.requestGmailAccess();
     }
+
+
+    // requestGmailAccess(): void {
+    //   const tokenClient = google.accounts.oauth2.initTokenClient({
+    //     client_id: googleEnvironment.googleClientId,
+    //     scope: mailApi.apiUrl,
+    //     callback: (tokenResponse: any) => {
+    //       if (tokenResponse && tokenResponse.access_token) {
+    //         this.accessToken = tokenResponse.access_token;
+    //         this.googleAuth();
+    //       } else {
+    //         this.errorService.setError('Failed to get Gmail access token');
+    //         this.isLoading = false;
+    //       }
+    //     }
+    //   });
+    //   tokenClient.requestAccessToken();
+    // }
 
     promptGoogleLogin(): void {
       this.isLoading = true
@@ -36,7 +55,7 @@ export class GoogleAuthComponent {
         callback: this.handleCredentialResponse.bind(this),
         itp_support: true
       });
-  
+
       google.accounts.id.renderButton(
       document.getElementById("google-button"),
          {

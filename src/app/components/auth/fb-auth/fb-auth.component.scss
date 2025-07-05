@@ -1,0 +1,53 @@
+.navbar-custom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    margin: 0;
+    background-color: white;
+    padding: 20px;
+
+    button{
+        border: none;
+        font-size: 16px;
+        color: rgb(0, 0, 0);
+        background-color: white;
+    }
+
+    .right-one{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:10px;
+
+        @media (max-width: 480px) {
+            display: none;
+        }
+    }
+
+    .right-two{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:10px;
+        @media (max-width:  780px) {
+            display: none;
+        }
+    }
+
+    .right-three{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:10px;
+
+
+        @media (max-width: 930px) {
+            display: none;
+        }
+    }
+
+
+
+
+}

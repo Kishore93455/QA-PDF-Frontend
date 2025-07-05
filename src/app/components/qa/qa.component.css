@@ -1,6 +1,6 @@
 /* Main Container Styling */
 .qa-container {
-  width: 1000px;
+  max-width: 1000px;
   max-height: 900px;
   margin: 2rem auto;
   padding: 2.5rem;
@@ -16,7 +16,7 @@ h2 {
   color: #2c3e50;
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 2.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.5px;
 }
@@ -73,7 +73,6 @@ h3 {
   background: #3498db;
   color: white;
   font-size: 1rem;
-  min-width: 140px;
 }
 
 .btn-chat:hover, .btn-pdf:hover {
@@ -130,15 +129,6 @@ h3 {
   background: #2980b9;
 }
 
-.btn-back {
-  background: #7f8c8d;
-  color: white;
-  margin-top: 1.5rem;
-}
-
-.btn-back:hover {
-  background: #34495e;
-}
 
 /* Section Styling */
 .upload-section, .pdf-list-section, .qa-section {
@@ -216,7 +206,7 @@ h3 {
 .pdf-title {
   font-weight: 600;
   color: #2c3e50;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .pdf-actions {
@@ -225,7 +215,6 @@ h3 {
   flex-wrap: wrap;
 }
 
-/* Question Input Styling */
 .question-input {
   display: flex;
   flex-direction: column;
@@ -266,21 +255,36 @@ textarea:disabled {
   cursor: not-allowed;
 }
 
-/* Answer Section Styling */
 .answer-section {
   margin-top: 2rem;
   padding: 1.8rem;
   background: white;
   border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  border-left: 4px solid #2ecc71;
+  max-height: 600px;
+}
+
+.btn-back {
+  background: #7f8c8d;
+  color: white;
+}
+
+.btn-back:hover {
+  background: #34495e;
+}
+
+.ans-btn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .answer-content {
-  max-height: 600px;
+  max-height: 350px;
   color: #2c3e50;
-  line-height: 1.7;
-  font-size: 1.05rem;
+  line-height: 1.1;
+  font-size: 1.5rem;
   white-space: pre-line;
   overflow: auto;
 }
@@ -364,22 +368,27 @@ textarea:disabled {
     padding: 1.5rem;
     margin: 1rem;
   }
-  
+
   .button-group {
     flex-direction: column;
     gap: 1rem;
   }
-  
+
+  .ans-btn{
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   .btn {
     width: 100%;
   }
-  
+
   .pdf-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
-  
+
   .pdf-actions {
     width: 100%;
     justify-content: space-between;

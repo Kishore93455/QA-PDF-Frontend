@@ -27,6 +27,8 @@
               }
             ],
             "styles": [
+               "node_modules/ngx-spinner/animations/ball-spin-clockwise.css" ,
+               "node_modules/ngx-spinner/animations/ball-clip-rotate-multiple.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
@@ -86,6 +88,8 @@
               }
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-spin-clockwise.css" ,
+             "node_modules/ngx-spinner/animations/ball-clip-rotate-multiple.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],

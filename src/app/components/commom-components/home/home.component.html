@@ -2,14 +2,19 @@
   <div class="hero">
     <h1>Welcome to PDF Q&A App</h1>
     <p>Upload your PDF documents and ask questions to get instant answers</p>
-    
+
     <div class="cta-buttons">
       <button *ngIf="!authService.isAuthenticated()" class="btn btn-primary" routerLink="/register">Get Started</button>
       <button *ngIf="authService.isAuthenticated()" class="btn btn-primary" routerLink="/qa">Go to Q&A</button>
     </div>
   </div>
-  
+
   <div class="features">
+    <div class="feature">
+      <h3>Upload Contact Details</h3>
+      <p>Upload yuor contact detail for the any Information or updates</p>
+      <button  class="upload-stepper" routerLink="/upload"><mat-icon>upload_file</mat-icon></button>
+    </div>
     <div class="feature">
       <h3>Upload PDFs</h3>
       <p>Easily upload your PDF documents to our secure platform</p>

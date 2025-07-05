@@ -1,8 +1,7 @@
 <div *ngIf="showError" class="error-container">
     <div class="error-message">
       <span class="error-icon">⚠️</span>
-      <span>{{ errorMessage }}</span>
+      <span class="error-msg">{{ errorMessage }}</span>
       <button class="close-btn" (click)="showError = false">×</button>
     </div>
   </div>
-  

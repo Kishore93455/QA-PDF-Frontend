@@ -1,0 +1,21 @@
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <a routerLink="/">PDF Q&A App</a>
+      <button class="menu-toggle" (click)="isMenuOpen = !isMenuOpen">☰</button>
+    </div>
+
+    <nav class="nav" [class.open]="isMenuOpen">
+      <ul>
+        <li><a routerLink="/" (click)="closeMenu()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li *ngIf="authService.isAdmin()"><a routerLink="/admin/users" (click)="closeMenu()" routerLinkActive="active">Users</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a routerLink="/qa" (click)="closeMenu()" routerLinkActive="active">Q&A</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a routerLink="/create_pdf" (click)="closeMenu()" routerLinkActive="active">Create a PDF</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a routerLink="/edit_pdf" (click)="closeMenu()" routerLinkActive="active">Edit a PDF</a></li>
+        <li *ngIf="!authService.isAuthenticated()"><a routerLink="/login" (click)="closeMenu()" routerLinkActive="active">Login</a></li>
+        <li *ngIf="!authService.isAuthenticated()"><a routerLink="/register" (click)="closeMenu()" routerLinkActive="active">Register</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a href="javascript:void(0)" (click)="logout()">Logout</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

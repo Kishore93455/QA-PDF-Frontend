@@ -1,7 +1,8 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  min-height: 80vh;
+  max-height: 80vh;
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
@@ -138,8 +139,8 @@
   line-height: 1.4;
 }
 
-.chat-footer {
-  padding: 20px;
+/* .chat-footer {
+  padding: 15px;
   background-color: white;
   border-radius: 0 0 12px 12px;
   display: flex;
@@ -149,13 +150,19 @@
 }
 
 .chat-footer input {
-  flex: 1;
   padding: 12px 15px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   font-size: 14px;
   transition: all 0.3s ease;
   background-color: #f8f9fa;
+  width: 100%;
+}
+
+.input-class{
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
 }
 
 .chat-footer input:focus {
@@ -190,7 +197,7 @@
 .chat-footer button:active {
   transform: translateY(1px);
   box-shadow: none;
-}
+} */
 
 .btn t {
   font-size: 1.2rem;
@@ -247,4 +254,34 @@
   padding: 5px;
   border-radius: 2px;
   color: #1a1a1a;
+}
+
+
+.chat-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #2196F3, #1976D2);
+  padding: 20px;
+  border-radius: 0 0 12px 12px;
+  color: white;
+}
+
+.ques{
+  font-size: 20px;
+}
+
+.input-class input{
+  display: flex;
+  margin-right: 20px;
+  width: 100%;
+  padding: 10px;
+}
+
+.input-class{
+  display: flex;
+}
+.send{
+  border-radius: 20%;
+  padding: 12px 15px;
 }

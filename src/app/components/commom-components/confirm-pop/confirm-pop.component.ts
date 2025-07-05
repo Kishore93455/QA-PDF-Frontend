@@ -1,11 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-confirm-pop',
   standalone:true,
-  imports: [MatDialogModule],
+  imports: [MatDialogModule, MatIconModule],
   templateUrl: './confirm-pop.component.html',
   styleUrl: './confirm-pop.component.scss'
 })

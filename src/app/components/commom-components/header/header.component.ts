@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth.service'
+import { AuthService } from '../../../services/auth.service'
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmPopComponent } from '../confirm-pop/confirm-pop.component';
-
+import { ConfirmPopComponent } from '../../commom-components/confirm-pop/confirm-pop.component';
+import { LoaderService } from '../../../services/loader.service';
 
 @Component({
   selector: 'app-header',
@@ -15,8 +15,16 @@ import { ConfirmPopComponent } from '../confirm-pop/confirm-pop.component';
 })
 export class HeaderComponent {
   constructor(public authService: AuthService,
-  private matdialog : MatDialog
+  private matdialog : MatDialog,
+  private LoaderState : LoaderService,
   ) {}
+
+
+  isMenuOpen = false;
+
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
 
   logout(): void {
 

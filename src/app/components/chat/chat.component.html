@@ -16,8 +16,8 @@
     </div>
   </div>
   <div class="chat-footer">
-    <label for="question-input"><strong>Question :</strong></label>
-    <input type="text" id="question-input" [(ngModel)]="question" placeholder="Type your question here..." (keyup.enter)="sendQuestion()">
-    <button class="btn btn-primary" (click)="sendQuestion()">Send</button>
+    <div class="ques"><label for="question-input"><strong>Question</strong></label></div>
+    <div class="input-class"><input type="text" id="question-input" [(ngModel)]="question" placeholder="Type your question here..." (keyup.enter)="sendQuestion()">
+    <button class="send" (click)="sendQuestion()">Send</button></div>
   </div>
 </div>

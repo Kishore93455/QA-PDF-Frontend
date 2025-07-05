@@ -13,7 +13,7 @@
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 20px;
   color: #343a40;
 }
@@ -30,19 +30,23 @@
 }
 
 .features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .feature {
-  padding: 30px;
+  padding: 20px;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: transform 0.3s;
+  max-width: 400px;
+  min-width: 200px;
+  max-height: 200px;
+  min-height: 200px;
 }
 
 .feature:hover {
@@ -57,3 +61,20 @@
 .feature p {
   color: #6c757d;
 }
+
+
+.upload-stepper{
+  margin-top: 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+
+::ng-deep {
+  .mat-icon {
+      height: 40px !important;
+      width: 40px !important;
+  }
+    .material-icons{
+      font-size: 40px !important;
+    }
+  }
