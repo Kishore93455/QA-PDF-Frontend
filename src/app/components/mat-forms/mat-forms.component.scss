@@ -1,0 +1,99 @@
+.main-container{
+
+    position: relative;
+    top:170px;
+
+    ::ng-deep{
+        .mat-stepper-horizontal-line {
+            display: none;
+            // border-top-width: 3px !important;
+            // border-top-color: rgba(4, 0, 255, 0.411);
+        }
+        .mat-step-icon-selected {
+            background-color: lightblue !important;
+        }
+        .mat-step-label{
+            opacity: 0.5;
+        }
+        .mat-step-label.mat-step-label-active{
+            opacity: 5;
+            color: lightblue;
+        }
+        .mat-step-icon-state-edit{
+            background-color: rgb(4, 0, 255) !important;
+        }
+        .mat-step-header {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .mat-horizontal-stepper-header{
+            flex-direction: column !important;
+            gap: 5px;
+        }
+        .mat-horizontal-stepper-header-container{
+            display: none;
+            // display: flex;
+            // align-items: center;
+            // align-content: center;
+            // justify-content: space-between;
+        }
+        .mat-mdc-input-element{
+            margin-top: 15px;
+        }
+        .mat-mdc-form-field-required-marker::after{
+            content: '->' !important;
+        }
+        .mat-mdc-form-field-infix{
+            min-height: 15px !important;
+            padding-top: 10PX !important;
+            padding-bottom: 6px !important;
+            width: 350px !important;
+        }
+        .mdc-line-ripple{
+            display: none;
+        }
+        .mat-mdc-text-field-wrapper{
+            background-color: white !important;
+            border: 2px solid black !important;
+        }
+        .mat-mdc-form-field-subscript-wrapper{
+            display: none;
+        }
+    }
+
+    mat-horizontal-stepper{
+        background-color: white;
+        height: auto;
+    }
+
+    .forms{
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        gap: 20px;
+
+        .form-detail{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            width: 400px;
+        }
+    }
+
+    .steps{
+        margin: 0 auto;
+        width: 80%;
+        background-color: white;
+        padding: 20px;
+    }
+
+    .common-btn{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+}

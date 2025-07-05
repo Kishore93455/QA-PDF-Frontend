@@ -1,0 +1,134 @@
+<div class="main-container">
+  <div class="steps">
+      <app-step-header
+          [stepHeads]="steps"
+          [currentStep]="stepper.selectedIndex"
+          [stepsdone]="stepsDone"
+          (stepChange)="stepHeaderChange($event)"
+    ></app-step-header>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper (selectionChange)="stepSelectionChange($event)">
+      <mat-step [stepControl]="firstform">
+        <ng-template matStepLabel>
+           User Details
+        </ng-template>
+        <form class="forms" [formGroup]="firstform">
+          <div class="title"><h3>User Detail</h3></div>
+          <div class="form-detail">
+            <mat-form-field appearance="fill">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Mobile</mat-label>
+              <input matInput formControlName="mobile" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>City</mat-label>
+              <input matInput formControlName="city" required>
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="secondform">
+        <ng-template matStepLabel>
+            Parent Details
+        </ng-template>
+        <form class="forms" [formGroup]="secondform">
+          <div class="title"><h3>Parent Detail</h3></div>
+          <div class="form-detail">
+            <mat-form-field appearance="fill">
+              <mat-label>Father Name</mat-label>
+              <input matInput formControlName="fatherName" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Father Number</mat-label>
+              <input matInput formControlName="fatherNo" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Job</mat-label>
+              <input matInput formControlName="fatherJob" required>
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>
+            Photo Upload
+        </ng-template>
+        <form class="forms" [formGroup]="photoForm">
+          <div class="title"><h3>Upload Your Picture (Optional)</h3></div>
+          <div class="form-detail">
+            <input type="file" (change)="onFileSelected($event)" />
+            <p *ngIf="photoName">Selected: {{ photoName }}</p>
+          </div>
+          <div >
+            <button class="btn-primary" mat-button matStepperNext>Skip</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="extraForm">
+        <ng-template matStepLabel>
+            Extra Details
+        </ng-template>
+        <form class="forms" [formGroup]="extraForm">
+          <div class="title"><h3>Other Information</h3></div>
+          <div class="form-detail">
+            <mat-form-field appearance="fill">
+              <mat-label>Qualification</mat-label>
+              <input matInput formControlName="qualification" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Hobbies</mat-label>
+              <input matInput formControlName="hobbies" required>
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-step>
+
+    <mat-step>
+        <ng-template matStepLabel>
+            Review Details
+        </ng-template>
+        <div class="forms">
+        <div class="title"><h3>Review Your Details</h3></div>
+        <div class="review">
+            <h4>User Info:</h4>
+            <p><strong>Name:</strong> {{ firstform.value.name }}</p>
+            <p><strong>Email:</strong> {{ firstform.value.email }}</p>
+            <p><strong>Mobile:</strong> {{ firstform.value.mobile }}</p>
+            <p><strong>City:</strong> {{ firstform.value.city }}</p>
+
+            <h4>Parent Info:</h4>
+            <p><strong>Father Name:</strong> {{ secondform.value.fatherName }}</p>
+            <p><strong>Father No:</strong> {{ secondform.value.fatherNo }}</p>
+            <p><strong>Job:</strong> {{ secondform.value.fatherJob }}</p>
+
+            <h4>Other Info:</h4>
+            <p><strong>Qualification:</strong> {{ extraForm.value.qualification }}</p>
+            <p><strong>Hobbies:</strong> {{ extraForm.value.hobbies }}</p>
+
+            <p *ngIf="photoName"><strong>Uploaded File:</strong> {{ photoName }}</p>
+        </div>
+        </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+    <div class="common-btn">
+        <app-progress-btn
+        *ngIf="stepper && stepper._steps?.length"
+        [form]="currentForm"
+        [currentStep]="stepper.selectedIndex"
+        [totalSteps]="stepper._steps.length"
+        [isLastStep]="stepper.selectedIndex === stepper._steps.length - 1"
+        (stepChange)="onStepProgress()"
+        (stepsdone)="stepsDoneUpdate($event)">
+        </app-progress-btn>
+    </div>
+</div>
+</div>
