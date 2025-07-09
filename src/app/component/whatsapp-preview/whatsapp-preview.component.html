@@ -1,0 +1,122 @@
+
+<div class="container">
+  <h1 class="head">Preview</h1>
+    <div class="mobile-outline">
+      <div class="cur-time">{{cur_time}}</div>
+      <div class="sender"><mat-icon>arrow_backward</mat-icon>Sender Id</div>
+      <div class="preview">
+        <div class="wa-chat-back" [ngClass]="{'wa-chat-back-lto': message.templateType === 'LIMITED_TIME_OFFER'}">
+          <div class="wa-chat-bubble">
+            <div class="normal-section" >
+
+              <div class="wa-header" *ngIf="message.headerFormat === 'MEDIA' && message.mediaUrl && message.mediaType === 'IMAGE'">
+                <img class="media-header" [src]="message.mediaUrl" alt="Media" />
+              </div>
+
+              <div class="wa-header" *ngIf="message.headerFormat === 'MEDIA' && message.mediaUrl && message.mediaType === 'VIDEO'">
+                <video class="media-header" [src]="message.mediaUrl" controls [style.height.px]="120"></video>
+              </div>
+
+              <div class="wa-header" *ngIf="message.headerFormat === 'MEDIA' && message.mediaUrl && message.mediaType === 'PDF'">
+                <div class="pdf-content">
+                  <mat-icon class="pdf-icon" color="warn">picture_as_pdf</mat-icon>
+                  <div class="pdf-filename">{{ fileName }}</div>
+                  <!-- <a [href]="message.mediaUrl" target="_blank">View PDF</a> -->
+                </div>
+              </div>
+
+              <div class="wa-header header-text" *ngIf="message.headerContent && message.headerFormat === 'TEXT'">
+                {{ message.headerContent }}
+              </div>
+
+              <div class="wa-body">
+                <div class="body-text" *ngIf="message.bodyContent">{{ message.bodyContent }}</div>
+                <div class="body-text" *ngIf="isEmpty">Enter Your Template content Here</div>
+              </div>
+
+              <div class="wa-footer" *ngIf="message.footerContent">
+                {{ message.footerContent }}
+              </div>
+
+              <div class="wa-buttons" *ngIf="message.buttons?.length">
+                <button *ngFor="let btn of (message.buttons?.slice(0, 2) || [])">
+                  <mat-icon class="btn-icon" *ngIf="btn.type === 'QUICK_REPLY'">arrow_forward</mat-icon>
+                  <mat-icon class="btn-icon" *ngIf="btn.type === 'PHONE_NUMBER'">phone</mat-icon>
+                  <mat-icon class="btn-icon" *ngIf="btn.type === 'COPY_CODE'">content_copy</mat-icon>
+                  <mat-icon class="btn-icon" *ngIf="btn.type === 'URL'">link</mat-icon>
+                  <p>{{ btn.text }}</p>
+                </button>
+
+                <button class="seeall" *ngIf="(message.buttons?.length || 0) > 2">
+                  See All Options
+                </button>
+              </div>
+              <p class="sendTime">{{cur_time}}</p>
+            </div>
+
+            <ng-container *ngIf="message?.carouselItems as items">
+              <div class="wa-carousel-section" *ngIf="items.length > 0">
+                <button
+                  class="nav left"
+                  (click)="prevSlide()"
+                  [disabled]="currentSlide === 0"
+                  aria-label="Previous slide">
+                  &#10094;
+                </button>
+                <div class="carousel-track-wrapper">
+                  <div
+                    class="carousel-track"
+                    [style.transform]="'translateX(-' + currentSlide * 100 + '%)'"
+                    [style.width.%]="items.length * 100">
+
+                    <div
+                      class="carousel-card"
+                      *ngFor="let item of items">
+
+                      <div class="carousel-media" *ngIf="item.media?.url">
+                        <img *ngIf="item.media.type === 'image'" [src]="item.media.url" />
+                        <video *ngIf="item.media.type === 'video'" controls [src]="item.media.url" [style.height.px]="100"  [style.width.px]="160" ></video>
+                        <div class="pdf-content" *ngIf="item.media.type === 'pdf'">
+                          <mat-icon class="pdf-icon" color="warn">picture_as_pdf</mat-icon>
+                          <div class="pdf-filename">{{ fileName }}</div>
+                          <!-- <a [href]="message.mediaUrl" target="_blank">View PDF</a> -->
+                        </div>
+                      </div>
+
+                      <div class="carousel-buttons" *ngIf="item.buttons?.length">
+                        <button *ngFor="let btn of (item.buttons?.slice(0, 2) || [])">
+                          <mat-icon class="btn-icon" *ngIf="btn.type === 'QUICK_REPLY'">arrow_forward</mat-icon>
+                          <mat-icon class="btn-icon" *ngIf="btn.type === 'PHONE_NUMBER'">phone</mat-icon>
+                          <mat-icon class="btn-icon" *ngIf="btn.type === 'COPY_CODE'">content_copy</mat-icon>
+                          <mat-icon class="btn-icon" *ngIf="btn.type === 'URL'">link</mat-icon>{{ btn.text }}</button>
+                        <button *ngIf="(item.buttons?.length || 0) > 2">see all options</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="nav right"
+                  (click)="nextSlide()"
+                  [disabled]="currentSlide >= items.length - 1"
+                  aria-label="Next slide">
+                  &#10095;
+                </button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="lto-type-content" *ngIf="message.templateType === 'LIMITED_TIME_OFFER'">
+    <p class="notify">Notification Message</p>
+    <div class="content">
+      <h5><mat-icon class="warn">warning</mat-icon>{{ ltoHead }}</h5>
+      <p>{{ ltoContent }}</p>
+    </div>
+  </div>
+  <div class="type-content" *ngIf="message.templateType">
+       <h5>{{ message.templateType }}</h5>
+      <p>{{ type_content }}</p>
+  </div>
+</div>

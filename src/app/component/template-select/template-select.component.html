@@ -1,0 +1,202 @@
+<div class="main-container">
+  <!-- Left Form -->
+  <div class="left-container">
+    <form [formGroup]="templateForm" (ngSubmit)="onContinue()">
+      <div class="template-detail">
+
+        <!-- Template Name -->
+        <div class="template">
+          <mat-label>Enter the template name</mat-label>
+          <mat-form-field appearance="fill">
+            <input
+              matInput
+              formControlName="templateName"
+              placeholder="Enter a name for your template"
+              class="custom-placeholder"
+              (input)="onTemplateNameInput()" />
+          </mat-form-field>
+          <label class="char-count">{{ count }}/512</label>
+          <div *ngIf="namingError" class="submit-error">{{ namingError }}</div>
+        </div>
+
+        <!-- Category -->
+        <div class="template">
+          <mat-label>Select template category</mat-label>
+          <mat-form-field appearance="fill" class="select-with-arrow">
+            <mat-label>Select Category</mat-label>
+            <mat-select
+              #categorySelect="matSelect"
+              formControlName="templateCategory"
+              panelClass="custom-select-panel">
+              <mat-option *ngFor="let category of categoryOptions"
+                          [value]="category.value"
+                          [disabled]="!category.label.includes('Marketing')">
+                {{ category.label }}
+              </mat-option>
+            </mat-select>
+            <mat-error></mat-error>
+            <span class="custom-arrow" [innerHTML]="categorySelect.panelOpen ? downArrow : upArrow"></span>
+          </mat-form-field>
+          <div *ngIf="categoryError" class="submit-error">{{ categoryError }}</div>
+        </div>
+
+        <!-- Type -->
+        <div class="template">
+          <mat-label>Select template type</mat-label>
+          <mat-form-field appearance="fill" class="select-with-arrow">
+            <mat-label>Select Type</mat-label>
+            <mat-select
+              #typeSelect="matSelect"
+              formControlName="templateType"
+              panelClass="custom-select-panel">
+              <mat-option *ngFor="let type of typeOptions" [value]="type.value">
+                {{ type.label }}
+              </mat-option>
+            </mat-select>
+            <span class="custom-arrow" [innerHTML]="typeSelect.panelOpen ? downArrow : upArrow"></span>
+          </mat-form-field>
+          <div *ngIf="typeError" class="submit-error">{{ typeError }}</div>
+        </div>
+
+        <!-- Language -->
+        <div class="template lang">
+          <mat-label>Select template Language</mat-label>
+          <mat-form-field appearance="fill" class="select-with-arrow">
+            <mat-label>Select Language</mat-label>
+            <mat-select
+              #languageSelect="matSelect"
+              formControlName="templateLanguage"
+              (selectionChange)="onLanguageSelect($event.value)"
+              panelClass="custom-select-panel">
+
+              <div class="search-input-wrapper">
+                <mat-icon class="search-icon">search</mat-icon>
+                <input
+                  type="text"
+                  [(ngModel)]="searchTerm"
+                  [ngModelOptions]="{ standalone: true }"
+                  (ngModelChange)="onSearchChange($event)"
+                  placeholder="Search"
+                  class="search-box" />
+              </div>
+
+              <mat-option *ngFor="let lang of filteredLanguages" [value]="lang.submitCode">
+                <img
+                  [src]="'https://flagcdn.com/w40/' + lang.countryCode.toLowerCase() + '.png'"
+                  width="20"
+                  height="15"
+                  style="vertical-align: middle; margin-right: 8px;" />
+                {{ lang.countryName }}
+              </mat-option>
+            </mat-select>
+
+            <div class="selected-flag" *ngIf="selectedLanguage">
+              <img
+                [src]="'https://flagcdn.com/w40/' + selectedLanguage.countryCode.toLowerCase() + '.png'"
+                width="20"
+                height="15"
+                style="vertical-align: middle; margin-right: 8px;" />
+              {{ selectedLanguage.countryName }}
+            </div>
+
+            <span class="custom-arrow" [innerHTML]="languageSelect.panelOpen ? downArrow : upArrow"></span>
+          </mat-form-field>
+          <div *ngIf="languageError" class="submit-error">{{ languageError }}</div>
+        </div>
+      </div>
+
+      <div class="btn-continue">
+        <button type="submit" class="btn">Continue</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Preview -->
+  <div class="right-container">
+    <app-whatsapp-preview [message]="messageData"></app-whatsapp-preview>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- For purpose of get inout -->
+
+<div class="template-input-form">
+  <h3>Template Input</h3>
+
+  <div *ngIf="templateForm.get('templateType')?.value !== 'MEDIA_CARD_CAROUSEL'">
+  <label>Header Format:</label>
+  <select [(ngModel)]="headerFormat" (ngModelChange)="updateMessageData()">
+    <option value="TEXT">Text</option>
+    <option value="MEDIA">Media</option>
+  </select></div>
+
+  <div *ngIf="headerFormat === 'TEXT'  && templateForm.get('templateType')?.value !== 'MEDIA_CARD_CAROUSEL'">
+    <label>Header Text:</label>
+    <input type="text" [(ngModel)]="headerContent" (ngModelChange)="updateMessageData()" />
+  </div>
+
+  <div *ngIf="headerFormat === 'MEDIA' && templateForm.get('templateType')?.value !== 'MEDIA_CARD_CAROUSEL'">
+    <label>Select Media (Image / Video / PDF):</label>
+    <input type="file" (change)="handleFileInput($event)" accept="image/*,video/*,application/pdf" />
+    <div class="media-preview" *ngIf="mediaUrl">
+      <img *ngIf="isImage(mediaUrl)" [src]="mediaUrl" />
+      <video *ngIf="isVideo(mediaUrl)" controls [src]="mediaUrl"></video>
+      <embed *ngIf="isPdf(mediaUrl)" [src]="mediaUrl" type="application/pdf" width="100%" height="300px" />
+    </div>
+  </div>
+
+  <label>Body Content:</label>
+  <textarea [(ngModel)]="bodyContent" (ngModelChange)="updateMessageData()"></textarea>
+
+  <div *ngIf="templateForm.get('templateType')?.value !== 'MEDIA_CARD_CAROUSEL'"><label>Footer Content:</label>
+  <input type="text" [(ngModel)]="footerContent" (ngModelChange)="updateMessageData()" /></div>
+
+  <div class="button-list" *ngIf="templateForm.get('templateType')?.value !== 'MEDIA_CARD_CAROUSEL'">
+    <h4>Buttons</h4>
+    <div *ngFor="let btn of buttons; let i = index">
+      <select [(ngModel)]="btn.type" (ngModelChange)="updateMessageData()">
+        <option value="QUICK_REPLY">Quick Reply</option>
+        <option value="URL">URL</option>
+        <option value="PHONE_NUMBER">Phone Number</option>
+        <option value="COPY">Copy</option>
+      </select>
+      <input type="text" placeholder="Button Text" [(ngModel)]="btn.text" (ngModelChange)="updateMessageData()" />
+      <input type="text" placeholder="Button value" [(ngModel)]="btn.value" (ngModelChange)="updateMessageData()" />
+      <button (click)="removeButton(i)">Remove</button>
+    </div>
+    <button (click)="addButton()">Add Button</button>
+  </div>
+
+  <div *ngIf="templateForm.get('templateType')?.value === 'MEDIA_CARD_CAROUSEL'">
+    <h4>Carousel Items</h4>
+    <div *ngFor="let item of carouselItems; let i = index" class="carousel-item">
+      <label>Upload Media (Image / Video / PDF):</label>
+      <input type="file" (change)="handleCarouselFileInput($event, i)" accept="image/*,video/*,application/pdf" />
+
+      <div class="button-list">
+        <h5>Buttons</h5>
+        <div *ngFor="let btn of item.buttons; let j = index">
+          <select [(ngModel)]="btn.type" (ngModelChange)="updateMessageData()">
+            <option value="QUICK_REPLY">Quick Reply</option>
+            <option value="URL">URL</option>
+            <option value="PHONE_NUMBER">Phone Number</option>
+            <option value="COPY">Copy</option>
+          </select>
+          <input type="text" placeholder="Button Text" [(ngModel)]="btn.text" (ngModelChange)="updateMessageData()" />
+          <input type="text" placeholder="Button Value" [(ngModel)]="btn.value" (ngModelChange)="updateMessageData()" />
+          <button (click)="removeCarouselButton(i, j)">Remove</button>
+        </div>
+        <button (click)="addCarouselButton(i)">Add Button</button>
+      </div>
+
+      <button (click)="removeCarouselItem(i)">Remove Carousel Card</button>
+      <hr />
+    </div>
+
+    <button (click)="addCarouselItem()">Add Carousel Card</button>
+  </div>
+</div>
