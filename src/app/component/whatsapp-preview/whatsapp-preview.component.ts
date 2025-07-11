@@ -25,6 +25,7 @@ export interface WhatsappMessage {
   templateType?: string;
   headerFormat?: 'TEXT' | 'MEDIA';
   mediaType?: 'IMAGE' | 'VIDEO' | 'PDF';
+  file? : File,
   mediaUrl?: string;
   headerContent?: string;
   bodyContent?: string;

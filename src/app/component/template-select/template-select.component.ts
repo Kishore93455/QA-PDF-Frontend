@@ -30,6 +30,7 @@ interface WhatsappMessage {
   templateType?: 'GENERIC' | 'LIMITED_TIME_OFFER' | 'COUPON_CODE' | 'MEDIA_CARD_CAROUSEL';
   headerFormat?: 'TEXT' | 'MEDIA';
   mediaType?: 'IMAGE' | 'VIDEO' | 'PDF';
+  file?: File;
   mediaUrl?: string; //change to file and generate url function should be in Common Component
   headerContent?: string;
   bodyContent?: string;
@@ -179,6 +180,7 @@ export class TemplateSelectComponent implements OnInit {
   footerContent: string = '';
   buttons: Button[] = [];
   mediaType: string = '';
+  file: File | null = null;
 
   addButton() {
     this.buttons.push({ type: 'QUICK_REPLY', text: '', value: '' });
@@ -244,9 +246,9 @@ export class TemplateSelectComponent implements OnInit {
   handleFileInput(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
-      const file = input.files[0];
-      this.mediaUrl = URL.createObjectURL(file);
-      this.setMediaType(file.name);
+      this.file = input.files[0];
+      this.mediaUrl = URL.createObjectURL(this.file);
+      this.setMediaType(this.file.name);
       this.updateMessageData();
     }
   }
@@ -303,6 +305,7 @@ export class TemplateSelectComponent implements OnInit {
       ...this.messageData,
       headerFormat: this.headerFormat,
       mediaType: this.mediaType as 'IMAGE' | 'VIDEO' | 'PDF',
+      file: this.file!,
       mediaUrl: this.mediaUrl,
       headerContent: this.headerContent,
       bodyContent: this.bodyContent,

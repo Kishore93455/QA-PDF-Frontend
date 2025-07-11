@@ -4,7 +4,6 @@
     <div class="mobile-outline">
       <div class="cur-time">{{cur_time}}</div>
       <div class="sender"><mat-icon>arrow_backward</mat-icon>Sender Id</div>
-      <div class="preview">
         <div class="wa-chat-back" [ngClass]="{'wa-chat-back-lto': message.templateType === 'LIMITED_TIME_OFFER'}">
           <div class="wa-chat-bubble">
             <div class="normal-section" >
@@ -75,7 +74,7 @@
 
                       <div class="carousel-media" *ngIf="item.media?.url">
                         <img *ngIf="item.media.type === 'image'" [src]="item.media.url" />
-                        <video *ngIf="item.media.type === 'video'" controls [src]="item.media.url" [style.height.px]="100"  [style.width.px]="160" ></video>
+                        <video *ngIf="item.media.type === 'video'" controls [src]="item.media.url" [style.height.px]="120"  [style.width.px]="180" ></video>
                         <div class="pdf-content" *ngIf="item.media.type === 'pdf'">
                           <mat-icon class="pdf-icon" color="warn">picture_as_pdf</mat-icon>
                           <div class="pdf-filename">{{ fileName }}</div>
@@ -106,7 +105,6 @@
             </ng-container>
           </div>
         </div>
-    </div>
   </div>
   <div class="lto-type-content" *ngIf="message.templateType === 'LIMITED_TIME_OFFER'">
     <p class="notify">Notification Message</p>
