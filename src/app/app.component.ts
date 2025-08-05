@@ -10,12 +10,10 @@ import { PagenationComponent } from './components/meta-templates/pagenation/page
 import { MetaTemplateComponent } from './components/meta-templates/meta-template/meta-template.component';
 import { UiPracticeComponent } from './component/ui-practice/ui-practice.component';
 import { TemplateSelectComponent } from './component/template-select/template-select.component';
-// import { TemplateInputComponent } from './component/template-input/template-input.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  // imports: [CommonModule, TemplateInputComponent],
   imports: [CommonModule, TemplateSelectComponent],
   // imports: [CommonModule, UiPracticeComponent],
   // imports: [CommonModule, MetaTemplateComponent, LoaderComponent],

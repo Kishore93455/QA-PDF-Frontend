@@ -27,7 +27,7 @@
             <mat-select
               #categorySelect="matSelect"
               formControlName="templateCategory"
-              panelClass="custom-select-panel">
+              panelClass="select-panel">
               <mat-option *ngFor="let category of categoryOptions"
                           [value]="category.value"
                           [disabled]="!category.label.includes('Marketing')">
@@ -86,7 +86,7 @@
                   width="20"
                   height="15"
                   style="vertical-align: middle; margin-right: 8px;" />
-                {{ lang.countryName }}
+                {{ lang.countryName }}({{ lang.name }})
               </mat-option>
             </mat-select>
 

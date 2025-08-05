@@ -1,0 +1,44 @@
+
+
+<div class="header-container">
+
+  <div class="header-btn-container">
+    <div class="dropdown-container">
+      <button (click)="toggleDropdown()">
+        {{ selectedOption  }} ▼
+      </button>
+      <div class="dropdown-menu" *ngIf="dropdownOpen">
+        <label *ngFor="let option of options" class="dropdown-item">
+          <input
+            type="checkbox"
+            [checked]="isChecked(option)"
+            (change)="onCheckboxSelect(option)"
+          />
+          {{ option }}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-actions-container">
+    <div class="header-text" *ngIf="selectedOption === 'Text'">
+      <textarea class="textarea" placeholder="Header Text"></textarea>
+      <!-- add variable -->
+    </div>
+
+    <div class="header-media" *ngIf="selectedOption === 'Media'">
+        <div class="select-format">
+          <span>Image</span>
+          <span>VIDEO</span>
+          <span>PDF</span>
+        </div>
+        <div class="upload-file">
+          <input type="file" placeholder="Upload the File">
+        </div>
+        <div class="file-progress">
+
+        </div>
+    </div>
+  </div>
+
+</div>

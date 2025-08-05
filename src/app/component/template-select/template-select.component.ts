@@ -80,10 +80,10 @@ export class TemplateSelectComponent implements OnInit {
   ];
 
   typeOptions = [
-    { label: 'Generic', value: 'GENERIC' },
-    { label: 'LTO', value: 'LIMITED_TIME_OFFER' },
-    { label: 'Coupon Code', value: 'COUPON_CODE' },
-    { label: 'MCC', value: 'MEDIA_CARD_CAROUSEL' }
+    { label: 'Generic Template', value: 'GENERIC' },
+    { label: 'Limited Time Offer Template', value: 'LIMITED_TIME_OFFER' },
+    { label: 'Coupon Code Template', value: 'COUPON_CODE' },
+    { label: 'Media Card Carousel Template', value: 'MEDIA_CARD_CAROUSEL' }
   ];
 
   downArrow: SafeHtml;
@@ -141,6 +141,7 @@ export class TemplateSelectComponent implements OnInit {
 
   onSearchChange(term: string) {
     this.searchTerm = term.toLowerCase();
+    console.log(this.searchTerm);
     this.filteredLanguages = this.languages.filter(lang =>
       lang.countryName.toLowerCase().includes(this.searchTerm) ||
       lang.name.toLowerCase().includes(this.searchTerm)
