@@ -1,40 +1,20 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_ENV = 'development'
-    }
-
     stages {
-
-        stage('Run Tests') {
+        stage('Verify Trigger') {
             steps {
-                echo 'Running tests...'
-                sh 'npm test'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo 'Building application...'
-                sh 'npm run build'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying application...'
-                sh 'echo "Deployment complete!"'
+                echo '✅ Jenkins pipeline triggered successfully from GitHub webhook!'
             }
         }
     }
 
     post {
         success {
-            echo '✅ Build succeeded!'
+            echo '🎯 Pipeline finished successfully!'
         }
         failure {
-            echo '❌ Build failed!'
+            echo '❌ Pipeline failed!'
         }
     }
 }
