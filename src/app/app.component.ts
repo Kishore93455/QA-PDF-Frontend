@@ -14,11 +14,11 @@ import { TemplateSelectComponent } from './component/template-select/template-se
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, TemplateSelectComponent],
+  // imports: [CommonModule, TemplateSelectComponent],
   // imports: [CommonModule, UiPracticeComponent],
   // imports: [CommonModule, MetaTemplateComponent, LoaderComponent],
-  // imports: [CommonModule, RouterOutlet, ErrorComponent,
-  //    HeaderComponent, FbAuthComponent, LoaderComponent ],
+  imports: [CommonModule, RouterOutlet, ErrorComponent,
+     HeaderComponent, FbAuthComponent, LoaderComponent ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
