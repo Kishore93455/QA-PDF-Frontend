@@ -25,6 +25,6 @@ import { UiPracticeComponent } from './component/ui-practice/ui-practice.compone
   styleUrls: ['./app.component.css'] 
 })
 
-    
+    //check build 
 export class AppComponent {}
 
