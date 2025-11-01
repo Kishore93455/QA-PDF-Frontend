@@ -18,11 +18,11 @@ import { TemplateSelectComponent } from './component/template-select/template-se
   // imports: [CommonModule, UiPracticeComponent],
   // imports: [CommonModule, MetaTemplateComponent, LoaderComponent],
   imports: [CommonModule, RouterOutlet, ErrorComponent,
-     HeaderComponent, FbAuthComponent, LoaderComponent ],
+    HeaderComponent, FbAuthComponent, LoaderComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 
 
-export class AppComponent {}
+export class AppComponent { }
 
