@@ -10,7 +10,7 @@ import { PagenationComponent } from './components/meta-templates/pagenation/page
 import { MetaTemplateComponent } from './components/meta-templates/meta-template/meta-template.component';
 import { UiPracticeComponent } from './component/ui-practice/ui-practice.component';
 // import { TemplateInputComponent } from './component/template-input/template-input.component';
-
+  
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -18,10 +18,11 @@ import { UiPracticeComponent } from './component/ui-practice/ui-practice.compone
   // imports: [CommonModule, TemplateSelectComponent],
   // imports: [CommonModule, UiPracticeComponent],
   // imports: [CommonModule, MetaTemplateComponent, LoaderComponent],
+  //Test Build
   imports: [CommonModule, RouterOutlet, ErrorComponent,
      HeaderComponent, FbAuthComponent, LoaderComponent ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'] 
 })
 
 
